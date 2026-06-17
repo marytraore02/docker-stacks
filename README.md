@@ -148,7 +148,7 @@ docker-stacks/
 | Stack | Description | Directory | Ports |
 |-------|-------------|-----------|-------|
 | **n8n** | Workflow automation platform | [`n8n/`](n8n/) | `5678` |
-| **Portainer** | Docker management UI | [`portainer/`](portainer/) | `9443` |
+| **Portainer** | Docker management UI | [`portainer/`](portainer/) | `9443`, `9009` |
 
 ### 🌐 Full-Stack Applications
 

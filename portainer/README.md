@@ -6,7 +6,7 @@ Portainer is a powerful, lightweight management UI which allows you to easily ma
 
 | Service | Image | Port | Description |
 |---------|-------|------|-------------|
-| **Portainer CE** | `portainer/portainer-ce:latest` | `9443` (HTTPS), `8000` (Edge) | Docker management interface |
+| **Portainer CE** | `portainer/portainer-ce:latest` | `9443` (HTTPS), `9009` (HTTP), `8001` (Edge) | Docker management interface |
 
 ## Quick Start
 
@@ -22,7 +22,8 @@ docker compose up -d
 
 | Interface | URL | Credentials |
 |-----------|-----|-------------|
-| Portainer Web UI | [https://localhost:9443](https://localhost:9443) | Initial Setup on first run |
+| Portainer Web UI (HTTPS) | [https://localhost:9443](https://localhost:9443) | Initial Setup on first run |
+| Portainer Web UI (HTTP)  | [http://localhost:9009](http://localhost:9009) | Initial Setup on first run |
 
 ## Features
 

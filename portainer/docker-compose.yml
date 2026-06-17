@@ -11,7 +11,8 @@ services:
       - portainer_data:/data
     ports:
       - "9443:9443"
-      - "8000:8000"
+      - "9009:9000"
+      - "8001:8000"
     networks:
       - shared_network_local
 
