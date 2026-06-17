@@ -88,6 +88,7 @@ docker-stacks/
 ├── 📂 hadoop-ecosystem/             # Hadoop ecosystem (HDFS, YARN, MapReduce)
 │
 ├── 📂 n8n/                          # n8n workflow automation
+├── 📂 portainer/                    # Portainer Docker management UI
 ├── 📂 ollama-stack/                 # Ollama LLM + Open WebUI
 │
 ├── 📂 services/                     # All-in-one stack (Kafka + ELK + PostgreSQL)
@@ -147,6 +148,7 @@ docker-stacks/
 | Stack | Description | Directory | Ports |
 |-------|-------------|-----------|-------|
 | **n8n** | Workflow automation platform | [`n8n/`](n8n/) | `5678` |
+| **Portainer** | Docker management UI | [`portainer/`](portainer/) | `9443` |
 
 ### 🌐 Full-Stack Applications
 
