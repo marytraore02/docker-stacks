@@ -29,6 +29,9 @@ Desktop.ini
 **/pgdata/
 **/data/
 **/ollama-data/
+**/open-webui-data/
+**/portainer_data/
+**/n8n_data/
 **/clickhouse-data/
 **/minio-data/
 **/es_data/
@@ -36,6 +39,7 @@ Desktop.ini
 **/zookeeper-data/
 **/grafana-data/
 **/prometheus-data/
+**/cache/
 
 # === Logs ===
 **/logs/
