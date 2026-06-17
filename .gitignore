@@ -1,0 +1,79 @@
+# =============================================================================
+# Docker Stacks - .gitignore
+# =============================================================================
+
+# === OS Generated Files ===
+.DS_Store
+._.DS_Store
+._*
+**/.DS_Store
+**/._*
+Thumbs.db
+Desktop.ini
+*~
+
+# === IDE / Editor ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.save
+*.orig
+
+# === Docker Runtime Data ===
+# Volumes data (generated at runtime, should not be committed)
+**/mysql_data/
+**/postgres_data/
+**/pgdata/
+**/data/
+**/ollama-data/
+**/clickhouse-data/
+**/minio-data/
+**/es_data/
+**/kafka-data/
+**/zookeeper-data/
+**/grafana-data/
+**/prometheus-data/
+
+# === Logs ===
+**/logs/
+*.log
+
+# === Environment Files (may contain secrets) ===
+# Keep .env.example files, ignore actual .env
+# Uncomment the line below if your .env files contain secrets:
+# .env
+# !.env.example
+
+# === Build Artifacts ===
+**/target/
+**/*.jar
+!**/src/**/*.jar
+**/*.class
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# === Temporary & Backup Files ===
+*.save
+*.tmp
+*.temp
+*.bkp
+
+# === Large Binary Files ===
+*.gz
+*.tar
+*.zip
+*.rar
+!**/config/**
+
+# === Hadoop Specific ===
+hadoop-ecosystem/el_quijote.txt
+hadoop-ecosystem/hadoop-mapreduce-examples-*.jar
+
+# === Nested Git Repositories ===
+# These are separate projects cloned inside; we track them as submodules or ignore
+kafka-stack-docker-compose/.git/
+BDD/clickhouse-connect/.git/

@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.1-pg18-trixie
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql
+    restart: always # Optionnel : pour s'assurer que le conteneur redémarre automatiquement
+    networks:
+      - shared_network_local
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_UID: "5050"
+      PGADMIN_GID: "5050"
+    ports:
+      - "8887:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: always
+    networks:
+      - shared_network_local
+
+volumes:
+  pg_data:
+  pgadmin_data:
+
+
+networks:
+  shared_network_local:
+    external: true

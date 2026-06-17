@@ -1,0 +1,30 @@
+# Test data
+.pytest_cache
+
+# Development Python environments
+*venv
+
+# IDE files
+*.idea
+.vscode
+
+# Build artifacts
+/dist
+/build
+*.egg-info/
+
+# Temporary development stuff (Manual tests, etc.)
+/dev
+test.env
+.env
+.dev_version
+
+# Python cruft
+*.pyc
+.python-version
+
+# Apple garbage
+.DS_Store
+
+# C extensions
+*.pyd

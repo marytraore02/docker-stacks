@@ -1,0 +1,149 @@
+services:
+
+  namenode:
+    build: ./hadoop
+    image: hadoop-custom:3.4.0
+    container_name: namenode
+    hostname: namenode
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+      - hadoop_datanode:/hadoop/dfs/data      
+    ports:
+      - "9870:9870" # NameNode Web UI
+      - "9864:9864" # DataNode Web UI
+      - "9000:9000" # HDFS default port
+    networks:
+      net:
+        ipv4_address: 192.168.100.2
+
+  hive-metastore:
+    image: apache/hive:4.0.0-alpha-2
+    container_name: hive-metastore
+    hostname: hive-metastore
+    environment:
+      - SERVICE_NAME=metastore
+    ports:
+      - "9083:9083"
+    networks:
+      net:
+        ipv4_address: 192.168.100.3
+
+  hive-server:
+    image: apache/hive:4.0.0-alpha-2
+    container_name: hive-server
+    hostname: hive-server
+    environment:
+      - SERVICE_NAME=hiveserver2
+    ports:
+      - "10000:10000"
+      - "10002:10002"
+    depends_on:
+      - hive-metastore
+    networks:
+      net:
+        ipv4_address: 192.168.100.4
+
+  mysql:
+    image: mysql:8.0.33
+    container_name: mysql
+    hostname: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: P*ssW0rD
+      MYSQL_DATABASE: djangodatabase
+      MYSQL_USER: djangouser
+      MYSQL_PASSWORD: P*ssW0rD
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      net:
+        ipv4_address: 192.168.100.5
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    hostname: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      net:
+        ipv4_address: 192.168.100.6
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    hostname: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      net:
+        ipv4_address: 192.168.100.7
+
+  jupyterlab:
+    build: ./jupyterlab
+    container_name: jupyterlab
+    hostname: jupyterlab
+    depends_on:
+      - namenode
+      - mysql
+      - mongodb
+    ports:
+      - "8888:8888"
+    volumes:
+      - ~/.jupyterlab:/root/.jupyterlab
+      - jupyterlab-data:/workspace
+    networks:
+      net:
+        ipv4_address: 192.168.100.8
+
+  dns:
+    image: phensley/docker-dns
+    container_name: dns
+    hostname: dns
+    environment:
+      - PRIMARY_DNS=8.8.8.8
+      - DOMAINS=namenode=192.168.100.2,hive-metastore=192.168.100.3,hive-server=192.168.100.4,mysql=192.168.100.5,mongodb=192.168.100.6,zookeeper=192.168.100.7,jupyterlab=192.168.100.8
+    networks:
+      net:
+        ipv4_address: 192.168.100.9
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "8053:53"
+      - "8053:53/udp"
+    volumes:
+      - /var/run/docker.sock:/docker.sock:ro
+    restart: always
+
+volumes:
+  mysql_data:
+  mongodb-data:
+  hadoop_namenode:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./volumes/namenode
+      o: bind
+  hadoop_datanode:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./volumes/datanode
+      o: bind
+  jupyterlab-data:
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
