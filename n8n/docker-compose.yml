@@ -1,6 +1,7 @@
 services:
   n8n:
     image: docker.n8n.io/n8nio/n8n
+    container_name: n8n
     restart: always
     ports:
       - "5678:5678"
@@ -8,7 +9,10 @@ services:
       - GENERIC_TIMEZONE=Europe/Paris
       - TZ=Europe/Paris
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-      - N8N_RUNNERS_ENABLED=true
+      - N8N_SECURE_COOKIE=false
+      # - N8N_RUNNERS_ENABLED=true
+      - N8N_AUTH_DISABLE=true
+      - N8N_USER_MANAGEMENT_DISABLED=true
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
       - DB_POSTGRESDB_PORT=5432
