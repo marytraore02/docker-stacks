@@ -40,3 +40,6 @@ services:
 networks:
   shared_network_local:
     external: true
+
+# email: marytra292@gmail.com
+# password: 123456789999

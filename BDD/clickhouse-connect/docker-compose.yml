@@ -4,7 +4,7 @@ services:
     container_name: 'clickhouse-connect-clickhouse-server'
     environment:
       CLICKHOUSE_SKIP_USER_SETUP: 1
-    restart: always
+    restart: unless-stopped
     ports:
       - '8123:8123'
       - '9002:9002'
@@ -31,7 +31,7 @@ services:
     container_name: 'clickhouse-connect-clickhouse-server-tls'
     environment:
       CLICKHOUSE_SKIP_USER_SETUP: 1
-    restart: always
+    restart: unless-stopped
     ports:
       - '10843:8443'
       - '10840:9440'
