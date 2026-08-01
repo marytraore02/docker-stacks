@@ -8,6 +8,7 @@ This directory contains Docker stacks for various database and storage solutions
 |-------|-------------|-----------|
 | **ClickHouse Connect** | ClickHouse analytics database with Python connector library | [`clickhouse-connect/`](clickhouse-connect/) |
 | **MinIO** | S3-compatible object storage with web console | [`minio/`](minio/) |
+| **MongoDB Stack** | MongoDB 8.0 database with Mongo Express UI | [`mongodb-stack/`](mongodb-stack/) |
 | **MySQL Stack** | MySQL 8 database with phpMyAdmin interface | [`mysql-stack/`](mysql-stack/) |
 | **PostgreSQL Stack** | PostgreSQL with pgvector extension + pgAdmin4 | [`postgres-stack/`](postgres-stack/) |
 | **Redis Stack** | Redis database with RedisInsight UI | [`redis-stack/`](redis-stack/) |

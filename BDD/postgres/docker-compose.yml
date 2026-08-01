@@ -36,7 +36,6 @@ volumes:
   pg_data:
   pgadmin_data:
 
-
 networks:
   shared_network_local:
     external: true
