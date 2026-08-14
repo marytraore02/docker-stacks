@@ -87,6 +87,8 @@ docker-stacks/
 ├── 📂 grafana/                      # Grafana + Prometheus monitoring
 ├── 📂 hadoop-ecosystem/             # Hadoop ecosystem (HDFS, YARN, MapReduce)
 │
+├── 📂 keycloak/                     # Keycloak IAM authentication server
+├── 📂 maildev/                      # MailDev mock SMTP server & Web UI
 ├── 📂 n8n/                          # n8n workflow automation
 ├── 📂 portainer/                    # Portainer Docker management UI
 ├── 📂 ollama-stack/                 # Ollama LLM + Open WebUI
@@ -143,12 +145,14 @@ docker-stacks/
 |-------|-------------|-----------|-------|
 | **Ollama + Open WebUI** | Self-hosted LLM with chat interface | [`ollama-stack/`](ollama-stack/) | `11434`, `3001` |
 
-### ⚙️ Automation & Orchestration
+### ⚙️ Automation & Tools
 
 | Stack | Description | Directory | Ports |
 |-------|-------------|-----------|-------|
 | **n8n** | Workflow automation platform | [`n8n/`](n8n/) | `5678` |
 | **Portainer** | Docker management UI | [`portainer/`](portainer/) | `9443`, `9009` |
+| **MailDev** | Mock SMTP server & Web UI for email testing | [`maildev/`](maildev/) | `1080`, `1025` |
+| **Keycloak** | Identity and Access Management (IAM) | [`keycloak/`](keycloak/) | `8080` |
 
 ### 🌐 Full-Stack Applications
 
