@@ -1,0 +1,30 @@
+version: '1'
+
+services:
+  taskmanager:
+    image: my-flink
+    container_name: taskmanager2
+    hostname: taskmanager2
+    depends_on:
+      - jobmanager
+    command: taskmanager
+    scale: 1
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 6
+
+  jobmanager:
+    image: my-flink
+    container_name: jobmanager2
+    hostname: jobmanager2
+    ports:
+      - "8082:8082"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
+        rest.address: jobmanager
+        rest.port: 8082
