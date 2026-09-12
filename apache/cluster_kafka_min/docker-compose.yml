@@ -53,7 +53,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
+ 
   kafka_ui:
     image: provectuslabs/kafka-ui:latest
     container_name: kafka-ui
