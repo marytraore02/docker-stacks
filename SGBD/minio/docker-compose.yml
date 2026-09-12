@@ -5,8 +5,8 @@ services:
     image: minio/minio:latest
     container_name: minio
     ports:
-      - "9000:9000" # API S3
-      - "9001:9001" # Console d'administration
+      - "9001:9001" # API S3
+      - "9003:9003" # Console d'administration
     environment:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=admin123
