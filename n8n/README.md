@@ -26,7 +26,7 @@ docker compose up -d
 
 ## Database
 
-n8n is configured to use an external PostgreSQL database (from the `postgres-stack`):
+n8n is configured to use an external PostgreSQL database (from the `SGBD/postgres` stack):
 
 | Setting | Value |
 |---------|-------|

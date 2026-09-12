@@ -73,11 +73,7 @@ Desktop.ini
 *.rar
 !**/config/**
 
-# === Hadoop Specific ===
-hadoop-ecosystem/el_quijote.txt
-hadoop-ecosystem/hadoop-mapreduce-examples-*.jar
-
 # === Nested Git Repositories ===
 # These are separate projects cloned inside; we track them as submodules or ignore
 kafka-stack-docker-compose/.git/
-BDD/clickhouse-connect/.git/
+SGBD/clickhouse-connect/.git/

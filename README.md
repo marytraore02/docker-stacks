@@ -68,33 +68,29 @@ This repository contains a well-organized collection of **Docker Compose** stack
 ```
 docker-stacks/
 │
-├── 📂 BDD/                          # Databases & Storage
+├── 📂 SGBD/                         # Databases & Storage
 │   ├── 📂 clickhouse-connect/       # ClickHouse database + Python connector
 │   ├── 📂 minio/                    # MinIO S3-compatible object storage
-│   ├── 📂 mysql-stack/              # MySQL + phpMyAdmin
-│   └── 📂 postgres-stack/           # PostgreSQL (pgvector) + pgAdmin
+│   ├── 📂 mongodb/                  # MongoDB 8.0 + Mongo Express
+│   ├── 📂 mysql/                    # MySQL 8 + phpMyAdmin
+│   ├── 📂 postgres/                 # PostgreSQL (pgvector) + pgAdmin
+│   └── 📂 redis/                    # Redis + RedisInsight
 │
-├── 📂 airflows/                     # Apache Airflow (CeleryExecutor)
-├── 📂 apache_flink/                 # Apache Flink (JobManager + TaskManager)
-├── 📂 apache_spark/                 # Apache Spark (Master + 2 Workers)
+├── 📂 apache/airflows/              # Apache Airflow (CeleryExecutor)
+├── 📂 apache/flink/                 # Apache Flink (JobManager + TaskManager)
+├── 📂 apache/spark/                 # Apache Spark (Master + 2 Workers)
 │
-├── 📂 cluster_kafka_min/            # Kafka + Zookeeper + Redis + UIs
+├── 📂 apache/cluster_kafka_min/       # Kafka + Zookeeper + Redis + UIs
 ├── 📂 kafka-stack-docker-compose/   # Advanced Kafka configurations (multi-broker)
 │
-├── 📂 elk2/                         # ELK Stack v7.14 (basic)
-├── 📂 elk3/                         # ELK Stack v7.14 (+ Filebeat)
+├── 📂 elk/                          # ELK Stack v7.14 (Elasticsearch + Logstash + Kibana)
 │
 ├── 📂 grafana/                      # Grafana + Prometheus monitoring
-├── 📂 hadoop-ecosystem/             # Hadoop ecosystem (HDFS, YARN, MapReduce)
-│
 ├── 📂 keycloak/                     # Keycloak IAM authentication server
 ├── 📂 maildev/                      # MailDev mock SMTP server & Web UI
 ├── 📂 n8n/                          # n8n workflow automation
 ├── 📂 portainer/                    # Portainer Docker management UI
 ├── 📂 ollama-stack/                 # Ollama LLM + Open WebUI
-│
-├── 📂 services/                     # All-in-one stack (Kafka + ELK + PostgreSQL)
-├── 📂 springboot-mysql/             # Spring Boot + MySQL application
 │
 ├── 📄 .gitignore                    # Git ignore rules
 ├── 📄 CONTRIBUTING.md               # Contribution guidelines
@@ -110,34 +106,34 @@ docker-stacks/
 
 | Stack | Description | Directory | Ports |
 |-------|-------------|-----------|-------|
-| **Apache Spark** | Distributed computing cluster with 1 master and 2 workers | [`apache_spark/`](apache_spark/) | `8080`, `7077`, `4040` |
-| **Apache Flink** | Stream & batch processing engine | [`apache_flink/`](apache_flink/) | `8082` |
-| **Apache Airflow** | Workflow orchestration platform (CeleryExecutor) | [`airflows/`](airflows/) | `8080`, `5555` |
-| **Hadoop Ecosystem** | HDFS, YARN, MapReduce cluster | [`hadoop-ecosystem/`](hadoop-ecosystem/) | Various |
+| **Apache Spark** | Distributed computing cluster with 1 master and 2 workers | [`apache/spark/`](apache/spark/) | `8080`, `7077`, `4040` |
+| **Apache Flink** | Stream & batch processing engine | [`apache/flink/`](apache/flink/) | `8082` |
+| **Apache Airflow** | Workflow orchestration platform (CeleryExecutor) | [`apache/airflows/`](apache/airflows/) | `8080`, `5555` |
 
 ### 📡 Streaming & Messaging
 
 | Stack | Description | Directory | Ports |
 |-------|-------------|-----------|-------|
-| **Kafka Minimal** | Kafka + Zookeeper + Redis + Kafka UI + RedisInsight | [`cluster_kafka_min/`](cluster_kafka_min/) | `9092`, `8040`, `6379`, `5540` |
+| **Kafka Minimal** | Kafka + Zookeeper + Redis + Kafka UI + RedisInsight | [`apache/cluster_kafka_min/`](apache/cluster_kafka_min/) | `9092`, `8040`, `6379`, `5540` |
 | **Kafka Advanced** | Multiple configurations (single/multi broker, schema registry) | [`kafka-stack-docker-compose/`](kafka-stack-docker-compose/) | Various |
 
 ### 🗄️ Databases & Storage
 
 | Stack | Description | Directory | Ports |
 |-------|-------------|-----------|-------|
-| **PostgreSQL** | PostgreSQL with pgvector extension + pgAdmin4 | [`BDD/postgres-stack/`](BDD/postgres-stack/) | `5432`, `8887` |
-| **MySQL** | MySQL 8 + phpMyAdmin | [`BDD/mysql-stack/`](BDD/mysql-stack/) | `3306`, `8899` |
-| **ClickHouse** | ClickHouse analytics DB + Python connector | [`BDD/clickhouse-connect/`](BDD/clickhouse-connect/) | `8123`, `9000` |
-| **MinIO** | S3-compatible object storage | [`BDD/minio/`](BDD/minio/) | `9000`, `9001` |
+| **PostgreSQL** | PostgreSQL with pgvector extension + pgAdmin4 | [`SGBD/postgres/`](SGBD/postgres/) | `5432`, `8887` |
+| **MySQL** | MySQL 8 + phpMyAdmin | [`SGBD/mysql/`](SGBD/mysql/) | `3306`, `8899` |
+| **MongoDB** | MongoDB 8.0 + Mongo Express | [`SGBD/mongodb/`](SGBD/mongodb/) | `27017`, `8881` |
+| **Redis** | Redis + RedisInsight | [`SGBD/redis/`](SGBD/redis/) | `6379`, `5540` |
+| **ClickHouse** | ClickHouse analytics DB + Python connector | [`SGBD/clickhouse-connect/`](SGBD/clickhouse-connect/) | `8123`, `9000` |
+| **MinIO** | S3-compatible object storage | [`SGBD/minio/`](SGBD/minio/) | `9000`, `9001` |
 
 ### 📈 Monitoring & Observability
 
 | Stack | Description | Directory | Ports |
 |-------|-------------|-----------|-------|
 | **Grafana + Prometheus** | Metrics monitoring & visualization | [`grafana/`](grafana/) | `3000`, `9094` |
-| **ELK Stack (basic)** | Elasticsearch + Logstash + Kibana | [`elk2/`](elk2/) | `9200`, `5044`, `5601` |
-| **ELK Stack (+ Filebeat)** | Full ELK with Filebeat log collector | [`elk3/`](elk3/) | `9200`, `5044`, `5601` |
+| **ELK Stack** | Elasticsearch + Logstash + Kibana | [`elk/`](elk/) | `9200`, `5044`, `5601` |
 
 ### 🤖 AI & Machine Learning
 
@@ -153,13 +149,6 @@ docker-stacks/
 | **Portainer** | Docker management UI | [`portainer/`](portainer/) | `9443`, `9009` |
 | **MailDev** | Mock SMTP server & Web UI for email testing | [`maildev/`](maildev/) | `1080`, `1025` |
 | **Keycloak** | Identity and Access Management (IAM) | [`keycloak/`](keycloak/) | `8080` |
-
-### 🌐 Full-Stack Applications
-
-| Stack | Description | Directory | Ports |
-|-------|-------------|-----------|-------|
-| **Services (All-in-One)** | Kafka + ELK + PostgreSQL combined | [`services/`](services/) | Various |
-| **Spring Boot + MySQL** | Java web app with MySQL backend | [`springboot-mysql/`](springboot-mysql/) | `8080`, `3306` |
 
 ---
 
@@ -186,11 +175,11 @@ Navigate to the desired stack directory and start it:
 
 ```bash
 # Example: Start the PostgreSQL stack
-cd BDD/postgres-stack
+cd SGBD/postgres
 docker compose up -d
 
 # Example: Start the Kafka minimal cluster
-cd cluster_kafka_min
+cd apache/cluster_kafka_min
 docker compose up -d
 
 # Example: Start the Ollama AI stack
@@ -241,7 +230,7 @@ docker network create shared_network_local
 └──────────────────────────────────────────────────────────────┘
 ```
 
-> **Note:** Stacks that don't use the shared network (like `elk2/`, `services/`) run in their own isolated network.
+> **Note:** All stacks listed above use the shared network for inter-stack communication. If a stack does not appear in this diagram, it runs in its own isolated network (for simplicity or specific isolation requirements).
 
 ---
 
